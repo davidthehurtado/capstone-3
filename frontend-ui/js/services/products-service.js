@@ -96,12 +96,6 @@ class ProductService {
                  let data = {};
                  data.products = response.data;
 
-                 data.products.forEach(product => {
-                     if(!this.hasPhoto(product.imageUrl))
-                     {
-                         product.imageUrl = "no-image.jpg";
-                     }
-                 })
 
                  templateBuilder.build('product', data, 'content', this.enableButtons);
 
