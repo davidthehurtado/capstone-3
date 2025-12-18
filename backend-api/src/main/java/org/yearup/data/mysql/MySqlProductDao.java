@@ -26,10 +26,16 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
                     WHERE (category_id = ? OR ? = -1)
                       AND (price >= ? OR ? = -1)
                       AND (price <= ? OR ? = -1)
-                      AND (? = '' OR subcategory = ?)
+                      AND (? = '' OR LOWER(subcategory) = LOWER(?))
                 """;
 
-        categoryId = (categoryId == null || categoryId == 0) ? -1 : categoryId;
+        //SELECT * FROM products " +
+        // "WHERE (category_id = ? OR ? = -1) " +
+        // "AND (price <= ? OR ? = -1) " +
+        // "AND (price >= ? OR ? = -1) " +
+        // "AND (subcategory = ? OR ? = '') ";
+
+        categoryId = categoryId == null ? -1 : categoryId;
         minPrice = minPrice == null ? new BigDecimal("-1") : minPrice;
         maxPrice = maxPrice == null ? new BigDecimal("-1") : maxPrice;
         subCategory = subCategory == null ? "" : subCategory;
